@@ -5,8 +5,13 @@ import { parse } from "partial-json";
 // Config
 // ──────────────────────────────────────────────────────────────────────────
 
-const API_URL = "http://localhost:8000/stream";
-const PRICE_API_URL = "http://localhost:8000/price"; // separate, fast endpoint — not tied to any analyst node
+// const API_URL = "http://localhost:8000/stream";
+// const PRICE_API_URL = "http://localhost:8000/price"; // separate, fast endpoint — not tied to any analyst node
+
+const API_URL = "https://ai-investment-team-353728531541.asia-south1.run.app/stream";
+const PRICE_API_URL = "https://ai-investment-team-353728531541.asia-south1.run.app/price"; // separate, fast endpoint — not tied to any analyst node
+
+
 
 // ──────────────────────────────────────────────────────────────────────────
 // Meta Data & Colors (Mapped to backend _node keys)

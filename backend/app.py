@@ -13,13 +13,18 @@ app = FastAPI(title="AI Investment Team")
 
 session = requests.Session(impersonate='chrome')
 
+origins = [
+    "http://localhost:5173",
+    "https://ai-investment-team.vercel.app/"
+]
+
 class AgentRequest(BaseModel):
     ticker: str
     query: str
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="http://localhost:5173",           # Allows requests from specified origins
+    allow_origins=origins,           # Allows requests from specified origins
     allow_credentials=True,         # Allows cookies and authentication headers
     allow_methods=["*"],             # Allows all standard HTTP methods (GET, POST, etc.)
     allow_headers=["*"],             # Allows all HTTP headers

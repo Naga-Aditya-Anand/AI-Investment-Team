@@ -12,16 +12,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  server: {
-    proxy: {
-      '/run': {
-        target: 'http://127.0.0.1:8000',
-        changeOrigin: true,
-      },
-      '/stream': {
-        target: 'http://127.0.0.1:8000',
-        changeOrigin: true,
-      }
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     '/run': {
+  //       target: 'http://127.0.0.1:8000',
+  //       changeOrigin: true,
+  //     },
+  //     '/stream': {
+  //       target: 'http://127.0.0.1:8000',
+  //       changeOrigin: true,
+  //     }
+  //   }
+  // }
 })
