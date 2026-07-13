@@ -4,17 +4,14 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import uuid
 import asyncio
-import requests
+from curl_cffi import requests
 import yfinance as yf
 from graphs.team_graph import team_graph
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="AI Investment Team")
 
-session = requests.Session()
-session.headers.update({
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-})
+session = requests.Session(impersonate='chrome')
 
 class AgentRequest(BaseModel):
     ticker: str
