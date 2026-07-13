@@ -3,6 +3,12 @@ import pandas as pd
 import ta
 from langchain_core.tools import tool
 from config import format_ticker
+import requests
+
+session = requests.Session()
+session.headers.update({
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+})
 
 @tool
 def get_company_profile(ticker:str) -> dict:
@@ -11,7 +17,7 @@ def get_company_profile(ticker:str) -> dict:
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
 
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     info = stock.info
 
     if not info:
@@ -37,7 +43,7 @@ def get_fundamental_data(ticker:str) -> dict:
     P/E ratio, EPS, revenue, profit margins, ROE, debt to equity and dividend yield.
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     info = stock.info
     if not info:
         return {"error": f"No fundamental data for {ticker}"}
@@ -69,7 +75,7 @@ def get_income_statement(ticker: str) -> dict:
     revenue, gross profit, operating income, net income and EBITDA for last 2 years.
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     financials = stock.financials
     if financials is None or financials.empty:
         return {"error": f"No income statement for {ticker}"}
@@ -95,7 +101,7 @@ def get_balance_sheet(ticker:str) -> dict:
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
 
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     bs = stock.balance_sheet.fillna(0)
     
     if bs is None or bs.empty:
@@ -121,7 +127,7 @@ def get_current_price(ticker: str) -> dict:
     including open, high, low, close, volume and previous close.
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     info = stock.info
     return{
         "ticker": ticker,
@@ -143,7 +149,7 @@ def get_technical_indicators(ticker: str) -> dict:
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
 
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     df = stock.history(period="6mo").dropna()
 
     if df.empty:
@@ -198,7 +204,7 @@ def get_analyst_recommendation(ticker:str) -> dict:
     showing the latest consensus and recommendation trend.
     Use This tool Only ONCE, Do NOT call the Tool again once the tool returns the status as success."""
     ticker = format_ticker(ticker)
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(ticker,session=session)
     rec = stock.recommendations
 
     if rec is None or rec.empty:
