@@ -15,7 +15,7 @@ session = requests.Session(impersonate='chrome')
 
 origins = [
     "http://localhost:5173",
-    "https://ai-investment-team.vercel.app/"
+    "https://ai-investment-team.vercel.app"
 ]
 
 class AgentRequest(BaseModel):
