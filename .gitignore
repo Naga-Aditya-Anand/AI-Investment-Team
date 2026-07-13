@@ -1,2 +1,38 @@
-.env
-.venv
+# OS Generated Files
+.DS_Store
+
+# Temporary Files
+structure.txt
+
+# -----------------------
+# FRONTEND (React / Vite)
+# -----------------------
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# -----------------------
+# BACKEND (Python)
+# -----------------------
+# Virtual Environment
+backend/.venv/
+
+# Environment Variables / Secrets
+backend/.env
+# Note: backend/.env.example is NOT ignored so others know what variables to set
+
+# Python Cache and Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Specific Backend Files to Ignore
+backend/testing.ipynb
+backend/hi.txt
+backend/logs.txt
+backend/test.py

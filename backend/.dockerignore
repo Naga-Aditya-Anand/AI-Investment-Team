@@ -1,0 +1,13 @@
+.venv
+__pycache__/
+**/__pycache__/
+*.pyc
+.env
+logs.txt
+hi.txt
+test.py
+testing.ipynb
+graph_visualization.png
+.git
+.gitignore
+*.log

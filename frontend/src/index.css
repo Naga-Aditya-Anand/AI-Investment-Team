@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body, #root {
+    @apply min-h-screen w-full bg-[#07090e] text-slate-100 m-0 p-0;
+  }
+}
